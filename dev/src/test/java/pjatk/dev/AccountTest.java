@@ -29,6 +29,6 @@ public class AccountTest {
         final ObjectMapper mapper = new ObjectMapper();
         final String jsonContent = mapper.writeValueAsString(account);
 
-        this.mockMvc.perform(post("/account/add").content(jsonContent)).andExpect(status().isAccepted());
+        this.mockMvc.perform(post("/account/add").content(jsonContent)).andExpect(status().isOk());
     }
 }

@@ -3,15 +3,21 @@ package pjatk.dev.entity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
+@Entity
 public class Account implements UserDetails {
 
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String username;
-    private String password;
-    private Session session;
+
+    @NotNull private String username;
+    @NotNull private String password;
+
     private Role role;
+    private Session session;
 
     public Account(String username, String password, Role role) {
         this.username = username;
@@ -27,12 +33,12 @@ public class Account implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return this.username;
     }
 
     @Override
